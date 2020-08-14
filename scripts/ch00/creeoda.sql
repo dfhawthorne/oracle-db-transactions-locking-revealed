@@ -1,4 +1,3 @@
-connect / as sysdba
 define username=eoda
 define usernamepwd=foo
 create user &&username identified by &&usernamepwd;
@@ -8,4 +7,3 @@ grant select on V_$STATNAME to &&username;
 grant select on V_$MYSTAT   to &&username;
 grant select on V_$LATCH    to &&username;
 grant select on V_$TIMER    to &&username;
-conn &&username/&&usernamepwd

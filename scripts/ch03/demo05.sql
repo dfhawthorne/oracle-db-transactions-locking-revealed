@@ -1,6 +1,5 @@
 -- DDL Locks
 
-connect eoda/foo
 
 column owner format a8
 column sid   format 99999

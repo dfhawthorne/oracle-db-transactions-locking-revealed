@@ -1,6 +1,5 @@
 -- Initial Transaction Slots, 1 or 2?
 
-connect eoda/foo
 drop table t purge;
 
 set echo on
@@ -21,13 +20,11 @@ alter system dump datafile &F block &B;
 
 column trace new_val TRACE
 
-select c.value || '/' || d.instance_name || '_ora_' || a.spid || '.trc' trace
-  from v$process a, v$session b, v$parameter c, v$instance d
+select c.value || '/diag/rdbms/' || e.db_unique_name || '/' || d.instance_name || '/trace/' || d.instance_name || '_ora_' || a.spid || '.trc' trace
+  from v$process a, v$session b, v$parameter c, v$instance d, v$database e
  where a.addr = b.paddr
    and b.audsid = userenv('sessionid')
-   and c.name = 'user_dump_dest'
+   and c.name = 'diagnostic_dest'
 /
 
-disconnect
-edit &TRACE
-connect eoda/foo
+host less &TRACE

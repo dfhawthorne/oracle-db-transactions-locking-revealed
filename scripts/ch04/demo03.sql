@@ -10,4 +10,4 @@ update t t1 set x = x+1;
 update t t2 set x = x+1;
 
 -- tk.sql is in the ch00 folder
-@tk "sys=no"
+@../ch00/tk "sys=no"
